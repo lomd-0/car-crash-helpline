@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report System - Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <a href="Car%20Crash%20Helpline.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="report.html">Submit Report</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="nav-right">
+            <a href="login.html">Login</a>
+            <a href="register.html">Register</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h1>Register</h1>
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="registerName">Full Name:</label>
+                <input type="text" id="registerName" name="registerName" required>
+                <div id="registerNameError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">Email:</label>
+                <input type="email" id="registerEmail" name="registerEmail" required>
+                <div id="registerEmailError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Phone Number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" placeholder="e.g. 0123456789" required>
+                <div id="phoneNumberError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="carPlate">Car Plate:</label>
+                <input type="text" id="carPlate" name="carPlate" placeholder="e.g. ABC 1234" required>
+                <div id="carPlateError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">Password:</label>
+                <input type="password" id="registerPassword" name="registerPassword" required>
+                <div id="registerPasswordError" class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <div id="confirmPasswordError" class="error-message"></div>
+            </div>
+
+            <div id="formStatus" class="status-message" aria-live="polite"></div>
+            <button type="submit">Register</button>
+        </form>
+    </main>
+
+    <script src="register-validation.js"></script>
+</body>
+</html>
