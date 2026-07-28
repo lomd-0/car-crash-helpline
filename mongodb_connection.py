@@ -8,12 +8,14 @@ from fastapi.middleware.cors import CORSMiddleware
 
 uri = os.getenv("MONGODB_URI")
 
-if not uri:
-    raise RuntimeError("MONGODB_URI environment variable is not set")
+client = None
+db = None
+users = None
 
-client = MongoClient(uri, server_api=ServerApi('1'))
-db = client["WebsiteData"]
-users = db["users"]
+if uri:
+    client = MongoClient(uri, server_api=ServerApi('1'))
+    db = client["WebsiteData"]
+    users = db["users"]
 
 app = FastAPI()
 
@@ -38,6 +40,9 @@ class LoginRequest(BaseModel):
 
 @app.post("/api/register")
 def register_user(data: RegisterRequest):
+    if users is None:
+        return {"message": "Database is not configured yet. Please set MONGODB_URI."}
+
     email_exists = users.find_one({"email": data.email.lower()}) is not None
     phone_exists = users.find_one({"phone": data.phone}) is not None
     plate_exists = users.find_one({"carPlate": data.carPlate.upper()}) is not None
@@ -57,6 +62,9 @@ def register_user(data: RegisterRequest):
 
 @app.post("/api/login")
 def login_user(data: LoginRequest):
+    if users is None:
+        return {"message": "Database is not configured yet. Please set MONGODB_URI."}
+
     user = users.find_one({"email": data.email.lower()})
 
     if not user:
