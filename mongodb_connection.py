@@ -6,16 +6,14 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from fastapi.middleware.cors import CORSMiddleware
 
-uri = "mongodb+srv://livingonmydesk_db_user:car-crash-helpline@websitedata.gyzhxnv.mongodb.net/?appName=WebsiteData"
+uri = os.getenv("MONGODB_URI")
 
-client = None
-db = None
-users = None
+if not uri:
+    raise RuntimeError("MONGODB_URI environment variable is not set")
 
-if uri:
-    client = MongoClient(uri, server_api=ServerApi('1'))
-    db = client["WebsiteData"]
-    users = db["users"]
+client = MongoClient(uri, server_api=ServerApi('1'))
+db = client["WebsiteData"]
+users = db["users"]
 
 app = FastAPI()
 
