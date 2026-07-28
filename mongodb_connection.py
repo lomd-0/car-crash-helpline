@@ -6,7 +6,7 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from fastapi.middleware.cors import CORSMiddleware
 
-uri = os.getenv("MONGODB_URI")
+uri = "mongodb+srv://livingonmydesk_db_user:car-crash-helpline@websitedata.gyzhxnv.mongodb.net/?appName=WebsiteData"
 
 client = None
 db = None
